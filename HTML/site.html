@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALLGREEN</title>
+    <style>
+        
+        html {
+            background: #000000;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 100%; /* Garante que o html ocupe toda a altura da janela de visualização */
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            FONT-FAMILY: Lucida sans-serif;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        #titulo {
+            font-size: 48px;
+            margin-top: 50px;
+            display: inline-block;
+            z-index: 1;
+        }
+
+        #titulo.neon {
+            text-shadow: 0 0 10px #00FF00, 0 0 20px #00FF00, 0 0 30px #00FF00, 0 0 40px #00FF00, 0 0 50px #00FF00, 0 0 60px #00FF00, 0 0 70px #00FF00;
+            animation: neon-burn 1s linear infinite alternate;
+        }
+
+        #contatos {
+            position: absolute;
+            bottom: -300px; /* Posiciona os contatos a 20px do fundo */
+            left: 0;
+            color: rgb(179, 184, 157);
+            right: 0;
+            text-align: center;
+            font-size: 35px;
+        }
+
+        #contatos p {
+            margin-bottom: 10px; /* Adiciona espaço entre os links de contato */
+        }
+
+        #contatos a {
+            color: rgb(255, 249, 249); /* Cor padrão do texto dos links */
+            text-decoration: none; /* Remove sublinhado padrão dos links */
+        }
+
+        #contatos a:hover {
+            color: #00FF00;/* Cor do texto dos links ao passar o mouse sobre eles */
+            text-decoration: underline; 
+        }
+
+        #contatos img {
+            vertical-align: middle; /* Alinha verticalmente as imagens ao texto */
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            width: 1px;
+            height: 1px;
+            border-radius: 50%;
+        }
+
+        @keyframes neon-burn {
+            from {
+                text-shadow: 0 0 10px #00FF00, 0 0 20px #00FF00, 0 0 30px #00FF00, 0 0 40px #00FF00, 0 0 50px #00FF00, 0 0 60px #00FF00, 0 0 70px #00FF00;
+            }
+            to {
+                text-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="titulo" class="neon">ALLGREEN</div>
+
+    <div id="contatos">
+        
+        <p>
+            <a href="https://wa.me/5583986928573" id="whatsapp">WhatsApp</a>
+        </p>
+        <p>
+            <a href="https://www.linkedin.com/in/john-victor-0a4251289/" id="linkedin">LinkedIn</a>
+        </p>
+        <p>
+            <a href="https://www.instagram.com/allgreen1_" id="instagram">Instagram</a>
+        </p>
+    </div>
+
+    <script>
+        // Função para fazer o neon piscar uma vez
+        function neonPiscar() {
+    const titulo = document.getElementById('titulo');
+    titulo.classList.add('neon');
+    // Remover a classe após um segundo
+    setTimeout(function() {
+        titulo.classList.remove('neon');
+    }, 1000);
+}
+
+
+        // Função para gerar uma estrela em uma posição aleatória na tela, dentro dos limites da janela do navegador
+        function createStar() {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.left = Math.random() * window.innerWidth + 'px';
+            star.style.top = Math.random() * window.innerHeight + 'px';
+            document.body.appendChild(star);
+s
+            // Define uma animação de movimento para a estrela
+            star.animate([
+                { transform: 'translate(0, 0)' },
+                { transform: 'translate(' + (Math.random() * 10 - 7) + 'px, ' + (Math.random() * 10 - 7) + 'px)' }
+            ], {
+                duration: Math.random() * 3000 + 2000, // Duração aleatória entre 2 e 5 segundos
+                iterations: Infinity,
+                direction: 'alternate',
+                easing: 'ease-in-out'
+            });
+        }
+
+        // Cria estrelas em locais aleatórios na tela, dentro dos limites da janela do navegador
+        function createStarsWithinViewport() {
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            const numStars = 300; // Número desejado de estrelas
+
+            for (let i = 0; i < numStars; i++) {
+                createStarWithinViewport(viewportWidth, viewportHeight);
+            }
+        }
+
+        // Função para criar uma estrela dentro dos limites da janela do navegador
+        function createStarWithinViewport(viewportWidth, viewportHeight) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.left = Math.random() * viewportWidth + 'px';
+            star.style.top = Math.random() * viewportHeight + 'px';
+            document.body.appendChild(star);
+
+            // Define uma animação de movimento para a estrela
+            star.animate([
+                { transform: 'translate(0, 0)' },
+                { transform: 'translate(' + (Math.random() * 10 - 6) + 'px, ' + (Math.random() * 10 - 6) + 'px)' }
+            ], {
+                duration: Math.random() * 3000 + 2000, // Duração aleatória entre 2 e 5 segundos
+                iterations: Infinity,
+                direction: 'alternate',
+                easing: 'ease-in-out'
+            });
+        }
+
+        // Chama a função para criar estrelas dentro dos limites da janela do navegador quando o documento estiver pronto
+        document.addEventListener('DOMContentLoaded', createStarsWithinViewport);
+    </script>
+</body>
+</html>
